@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Stránka</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+        /* Zde můžete přidat vlastní CSS styly */
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl">Ekonomický systém SPG</h1>
+            <nav>
+                <ul class="flex">
+                    <li><a href="hlavni.html" class="px-3 py-2 hover:bg-blue-700 rounded">Přehled</a></li>
+                    <li><a href="vypocetdph.html" class="px-3 py-2 hover:bg-blue-700 rounded">DPH</a></li>
+                    <li><a href="investice.html" class="px-3 py-2 hover:bg-blue-700 rounded">Investice</a></li>
+                    <li><a href="mena.html" class="px-3 py-2 hover:bg-blue-700 rounded">Měna</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!DOCTYPE html>
+    <html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Převod Měn</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-gray-100">
+        <div class="container max-w-md mx-auto mt-10">
+            <h2 class="text-2xl font-bold mb-4 text-center">Převod Měn</h2>
+            <div class="mb-4">
+                <label for="amount" class="block text-sm font-medium text-gray-700">Částka</label>
+                <input type="number" id="amount" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm" placeholder="Zadejte částku">
+            </div>
+            <div class="mb-4">
+                <label for="fromCurrency" class="block text-sm font-medium text-gray-700">Z měny</label>
+                <select id="fromCurrency" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm">
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="CZK">CZK</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="toCurrency" class="block text-sm font-medium text-gray-700">Do měny</label>
+                <select id="toCurrency" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm">
+                    <option value="CZK">CZK</option>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                </select>
+            </div>
+            <button onclick="convertCurrency()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700">Převést</button>
+    
+            <div id="result" class="mt-5 text-center"></div>
+        </div>
+    
+        <script>
+            const exchangeRates = {
+                "EUR": { "USD": 1.10, "CZK": 22.50 },
+                "USD": { "EUR": 0.91, "CZK": 24.20 },
+                "CZK": { "EUR": 0.039, "USD": 0.043 }
+            };
+    
+            function convertCurrency() {
+                const amount = document.getElementById('amount').value;
+                const fromCurrency = document.getElementById('fromCurrency').value;
+                const toCurrency = document.getElementById('toCurrency').value;
+    
+                const rate = exchangeRates[fromCurrency][toCurrency];
+                const result = amount * rate;
+    
+                document.getElementById('result').innerHTML = `
+                    <p class="text-lg">Převedená částka: <strong>${result.toFixed(2)} ${toCurrency}</strong></p>
+                `;
+            }
+        </script>
+    </body>
+    </html>
+    

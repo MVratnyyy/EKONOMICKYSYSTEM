@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Stránka</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+        /* Zde můžete přidat vlastní CSS styly */
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl">Ekonomický systém SPG</h1>
+            <nav>
+                <ul class="flex">
+                    <li><a href="hlavni.html" class="px-3 py-2 hover:bg-blue-700 rounded">Přehled</a></li>
+                    <li><a href="vypocetdph.html" class="px-3 py-2 hover:bg-blue-700 rounded">DPH</a></li>
+                    <li><a href="investice.html" class="px-3 py-2 hover:bg-blue-700 rounded">Investice</a></li>
+                    <li><a href="mena.html" class="px-3 py-2 hover:bg-blue-700 rounded">Měna</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!DOCTYPE html>
+    <html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Výpočet DPH</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-gray-100">
+        <div class="container max-w-md mx-auto mt-10">
+            <h2 class="text-2xl font-bold mb-4 text-center">Výpočet DPH</h2>
+            <div class="mb-4">
+                <label for="priceWithoutVat" class="block text-sm font-medium text-gray-700">Cena bez DPH</label>
+                <input type="number" id="priceWithoutVat" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm" placeholder="Zadejte cenu bez DPH">
+            </div>
+            <div class="mb-4">
+                <label for="vatRate" class="block text-sm font-medium text-gray-700">Sazba DPH</label>
+                <select id="vatRate" class="mt-1 p-2 w-full border-gray-300 rounded-md shadow-sm">
+                    <option value="0.21">21%</option>
+                    <option value="0.15">15%</option>
+                    <option value="0.10">10%</option>
+                </select>
+            </div>
+            <button onclick="calculateVat()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700">Vypočítat</button>
+    
+            <div id="result" class="mt-5 text-center"></div>
+        </div>
+    
+        <script>
+            function calculateVat() {
+                const priceWithoutVat = document.getElementById('priceWithoutVat').value;
+                const vatRate = document.getElementById('vatRate').value;
+    
+                const vatAmount = priceWithoutVat * vatRate;
+                const totalPriceWithVat = parseFloat(priceWithoutVat) + parseFloat(vatAmount);
+    
+                document.getElementById('result').innerHTML = `
+                    <p class="text-lg">Cena s DPH: <strong>${totalPriceWithVat.toFixed(2)} Kč</strong></p>
+                    <p class="text-lg">DPH: <strong>${vatAmount.toFixed(2)} Kč</strong></p>
+                `;
+            }
+        </script>
+    </body>
+    </html>
+    

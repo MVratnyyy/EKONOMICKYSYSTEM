@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanční Správa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="dashboard">
+        <div class="box" id="incomeBox">
+            <h2>Příjmy</h2>
+            <p id="incomeValue">0 CZK</p>
+        </div>
+        <div class="box" id="expenseBox">
+            <h2>Výdaje</h2>
+            <p id="expenseValue">0 CZK</p>
+        </div>
+        <div class="box" id="totalBox">
+            <h2>Celkový Stav</h2>
+            <p id="totalValue">0 CZK</p>
+        </div>
+    </div>
+
+    <form id="financeForm">
+        <input type="number" id="amount" placeholder="Částka" required>
+        <select id="type">
+            <option value="income">Příjem</option>
+            <option value="expense">Výdaj</option>
+        </select>
+        <select id="category">
+            <option value="jídlo">Jídlo</option>
+            <option value="bydlení">Bydlení</option>
+            <option value="doprava">Doprava</option>
+            <option value="zábava">Zábava</option>
+        </select>
+        <button type="submit">Přidat</button>
+    </form>
+
+    <div id="filters">
+        <h3>Filtr</h3>
+        <select id="filterCategory">
+            <option value="vše">Všechny kategorie</option>
+            <option value="jídlo">Jídlo</option>
+            <option value="bydlení">Bydlení</option>
+            <option value="doprava">Doprava</option>
+            <option value="zábava">Zábava</option>
+        </select>
+        <input type="number" id="minAmount" placeholder="Min částka">
+        <input type="number" id="maxAmount" placeholder="Max částka">
+        <button type="button" onclick="applyFilters()">Filtrovat</button>
+    </div>
+<br>
+<br>
+    <script src="script.js"></script>
+    <title>Kalkulačka Spoření / Investic s Grafem</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  .container { max-width: 600px; margin: auto; }
+  label { display: block; margin: 10px 0; }
+  input[type="number"] { width: 100%; padding: 8px; margin-top: 5px; }
+  button { padding: 10px 20px; margin-top: 10px; }
+  #result, #chartContainer { margin-top: 20px; }
+  canvas { width: 100%; height: 400px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Kalkulačka Spoření / Investic</h2>
+  <label for="initialAmount">Počáteční částka:</label>
+  <input type="number" id="initialAmount" placeholder="Počáteční částka" required>
+  
+  <label for="monthlyDeposit">Měsíční vklad:</label>
+  <input type="number" id="monthlyDeposit" placeholder="Měsíční vklad" required>
+  
+  <label for="interestRate">Roční úroková sazba (%):</label>
+  <input type="number" id="interestRate" step="0.01" placeholder="Roční úroková sazba" required>
+  
+  <label for="years">Doba trvání (v letech):</label>
+  <input type="number" id="years" placeholder="Doba trvání" required>
+  
+  <button onclick="calculate()">Spočítat</button>
+  
+  <div id="result"></div>
+  <div id="chartContainer">
+    <canvas id="investmentChart"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+function calculate() {
+  const initialAmount = parseFloat(document.getElementById('initialAmount').value);
+  const monthlyDeposit = parseFloat(document.getElementById('monthlyDeposit').value);
+  const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+  const years = parseFloat(document.getElementById('years').value);
+  
+  const months = years * 12;
+  const monthlyInterestRate = interestRate / 12;
+  
+  let futureValue = initialAmount;
+  let data = [initialAmount];
+  
+  for (let i = 1; i <= months; i++) {
+    futureValue = futureValue * (1 + monthlyInterestRate) + monthlyDeposit;
+    data.push(futureValue);
+  }
+  
+  document.getElementById('result').innerHTML = `Odhadovaná budoucí hodnota: ${futureValue.toFixed(2)} Kč`;
+  drawChart(data);
+}
+
+</script>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanční Správa</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #currencyConverter {
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #currencyConverter h2 {
+            margin-top: 0;
+        }
+        #currencyConverter input, #currencyConverter select, #currencyConverter button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+        #cc_result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Zde pokračuje váš stávající kód -->
+
+    <!-- Převodník Měn -->
+    <div id="currencyConverter">
+        <h2>Převod Měn</h2>
+        <input type="number" id="cc_amount" placeholder="Částka k převodu">
+        <select id="cc_fromCurrency">
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="CZK">CZK</option>
+        </select>
+        <select id="cc_toCurrency">
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="CZK">CZK</option>
+        </select>
+        <button id="cc_convert">Převést</button>
+        <p id="cc_result"></p>
+    </div>
+
+    <!-- Zde pokračuje váš stávající kód -->
+
+    <script src="prevodnik.js"></script>
+</body>
+</html>
+
+
+</html>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Výpočet DPH</title>
+    <style>
+        #dphCalculator {
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #dphCalculator h2 {
+            margin-top: 0;
+        }
+        #dphCalculator input, #dphCalculator select, #dphCalculator button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+        #dph_result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="dphCalculator">
+        <h2>Výpočet DPH</h2>
+        <input type="number" id="cenaBezDPH" placeholder="Cena bez DPH" step="any">
+        <select id="sazbaDPH">
+            <option value="21">21%</option>
+            <option value="15">15%</option>
+            <option value="10">10%</option>
+        </select>
+        <button id="vypocetDPH">Vypočítat</button>
+        <p id="dph_result"></p>
+    </div>
+
+    <script src="vypocetDPH.js"></script>
+</body>
+</html>
+
+

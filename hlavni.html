@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Stránka</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+        /* Zde můžete přidat vlastní CSS styly */
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl">Ekonomický systém SPG</h1>
+            <nav>
+                <ul class="flex">
+                    <li><a href="hlavni.html" class="px-3 py-2 hover:bg-blue-700 rounded">Přehled</a></li>
+                    <li><a href="vypocetdph.html" class="px-3 py-2 hover:bg-blue-700 rounded">DPH</a></li>
+                    <li><a href="investice.html" class="px-3 py-2 hover:bg-blue-700 rounded">Investice</a></li>
+                    <li><a href="mena.html" class="px-3 py-2 hover:bg-blue-700 rounded">Měna</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <body>
+        <div id="dashboard">
+            <div class="box" id="incomeBox">
+                <h2>Příjmy</h2>
+                <p id="incomeValue">0 CZK</p>
+            </div>
+            <div class="box" id="expenseBox">
+                <h2>Výdaje</h2>
+                <p id="expenseValue">0 CZK</p>
+            </div>
+            <div class="box" id="totalBox">
+                <h2>Celkový Stav</h2>
+                <p id="totalValue">0 CZK</p>
+            </div>
+        </div>
+    
+        <form id="financeForm">
+            <input type="number" id="amount" placeholder="Částka" required>
+            <select id="type">
+                <option value="income">Příjem</option>
+                <option value="expense">Výdaj</option>
+            </select>
+            <select id="category">
+                <option value="jídlo">Jídlo</option>
+                <option value="bydlení">Bydlení</option>
+                <option value="doprava">Doprava</option>
+                <option value="zábava">Zábava</option>
+            </select>
+            <button type="submit">Přidat</button>
+        </form>
+    
+        <div id="filters">
+            <h3>Filtr</h3>
+            <select id="filterCategory">
+                <option value="vše">Všechny kategorie</option>
+                <option value="jídlo">Jídlo</option>
+                <option value="bydlení">Bydlení</option>
+                <option value="doprava">Doprava</option>
+                <option value="zábava">Zábava</option>
+            </select>
+            <input type="number" id="minAmount" placeholder="Min částka">
+            <input type="number" id="maxAmount" placeholder="Max částka">
+            <button type="button" onclick="applyFilters()">Filtrovat</button>
+
+        </div>
+
+</body>
+<script src="script.js"></script>
+
+</html>
